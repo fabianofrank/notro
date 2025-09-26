@@ -28,6 +28,7 @@ import { Repository, RepositoryConnection, SearchParams } from './models/reposit
 })
 export class AppComponent {
   title = 'GitHub Repository Search';
+  Math = Math; // Expor Math para o template
   
   // Estado da aplicação
   repositories: Repository[] = [];

@@ -7,7 +7,7 @@ FEATURES: Cards responsivos + informações principais + ações
   
   <!-- Loading state -->
   <div *ngIf="loading" class="loading-container text-center py-8">
-    <mat-icon class="loading-icon animate-spin text-4xl text-gray-500">refresh</mat-icon>
+    <div class="animate-spin h-8 w-8 border-4 border-blue-500 border-t-transparent rounded-full mx-auto"></div>
     <p class="text-gray-600 mt-2">Buscando repositórios...</p>
   </div>
 
@@ -56,21 +56,26 @@ FEATURES: Cards responsivos + informações principais + ações
         </div>
 
         <!-- Stats -->
-        <div class="repository-stats grid grid-cols-3 gap-2 text-sm text-gray-600">
+        <div class="repository-stats grid grid-cols-4 gap-2 text-sm text-gray-600">
           
           <div class="stat-item text-center">
-            <mat-icon class="text-yellow-500">star</mat-icon>
+            <span class="text-yellow-500 font-semibold">star</span>
             <span class="block">{{ formatNumber(repo.stargazersCount) }}</span>
           </div>
 
           <div class="stat-item text-center">
-            <mat-icon class="text-blue-500">visibility</mat-icon>
+            <span class="text-blue-500 font-semibold">visit</span>
             <span class="block">{{ formatNumber(repo.watchersCount) }}</span>
           </div>
 
           <div class="stat-item text-center">
-            <mat-icon class="text-green-500">call_split</mat-icon>
+            <span class="text-green-500 font-semibold">call</span>
             <span class="block">{{ formatNumber(repo.forksCount) }}</span>
+          </div>
+
+          <div class="stat-item text-center">
+            <span class="text-red-500 font-semibold">bug</span>
+            <span class="block">{{ formatNumber(repo.openIssuesCount) }}</span>
           </div>
           
         </div>
@@ -84,7 +89,6 @@ FEATURES: Cards responsivos + informações principais + ações
 
       <mat-card-actions align="end">
         <button mat-button color="primary" (click)="openRepository(repo.url)">
-          <mat-icon>open_in_new</mat-icon>
           Ver no GitHub
         </button>
       </mat-card-actions>

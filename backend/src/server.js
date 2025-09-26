@@ -81,8 +81,14 @@ app.get('/health', (req, res) => {
 DESENVOLVIMENTO: http://localhost:4000
 PRODUÇÃO: Vercel define a porta automaticamente
 */
-app.listen(PORT, () => {
-  console.log(`🚀 Backend rodando na porta ${PORT}`);
-  console.log(`📊 GraphQL playground: http://localhost:${PORT}/graphql`);
-  console.log(`❤️ Health check: http://localhost:${PORT}/health`);
-});
+// Start server only if not in serverless environment (Vercel)
+if (!process.env.VERCEL) {
+  app.listen(PORT, () => {
+    console.log(`🚀 Backend rodando na porta ${PORT}`);
+    console.log(`📊 GraphQL playground: http://localhost:${PORT}/graphql`);
+    console.log(`❤️ Health check: http://localhost:${PORT}/health`);
+  });
+}
+
+// Export for Vercel serverless
+module.exports = app;

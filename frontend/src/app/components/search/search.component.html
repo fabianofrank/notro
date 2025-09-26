@@ -1,54 +1,45 @@
-<!-- 
-🔍 SEARCH COMPONENT TEMPLATE - Interface de busca
-FEATURES: Input com validação + botões de ação + Material Design
--->
-
-<div class="search-container bg-white p-6 rounded-lg shadow-md mb-6">
-  <form [formGroup]="searchForm" (ngSubmit)="onSearch()" class="search-form">
+<!-- Search Section -->
+<div class="bg-white rounded-lg shadow-md p-6 mb-6">
+  <form [formGroup]="searchForm" (ngSubmit)="onSearch()">
     
-    <!-- Campo de busca -->
-    <mat-form-field appearance="outline" class="search-input w-full mb-4">
-      <mat-label>Buscar repositórios no GitHub</mat-label>
-      <input 
-        matInput 
-        formControlName="query"
-        placeholder="Ex: react, angular, javascript..."
-        (keyup.enter)="onSearch()"
-      >
-      <mat-icon matSuffix>search</mat-icon>
+    <div class="space-y-4">
+      <!-- Input Field -->
+      <mat-form-field appearance="outline" class="w-full">
+        <mat-label>Buscar repositórios no GitHub</mat-label>
+        <input 
+          matInput 
+          formControlName="query"
+          placeholder="Ex: react, vue, angular..."
+          autocomplete="off">
+        
+        <!-- Error Messages -->
+        <mat-error *ngIf="queryControl?.hasError('required')">
+          Digite um termo para buscar
+        </mat-error>
+        <mat-error *ngIf="queryControl?.hasError('minlength')">
+          Digite pelo menos 2 caracteres
+        </mat-error>
+      </mat-form-field>
       
-      <!-- Mensagens de erro -->
-      <mat-error *ngIf="queryControl?.hasError('required')">
-        Digite um termo para buscar
-      </mat-error>
-      <mat-error *ngIf="queryControl?.hasError('minlength')">
-        Digite pelo menos 2 caracteres
-      </mat-error>
-    </mat-form-field>
-
-    <!-- Botões de ação -->
-    <div class="search-actions flex gap-4">
-      <button 
-        mat-raised-button 
-        color="primary" 
-        type="submit"
-        [disabled]="searchForm.invalid"
-        class="search-btn flex-1"
-      >
-        <mat-icon>search</mat-icon>
-        Buscar
-      </button>
-
-      <button 
-        mat-stroked-button 
-        type="button"
-        (click)="clearSearch()"
-        class="clear-btn"
-      >
-        <mat-icon>clear</mat-icon>
-        Limpar
-      </button>
+      <!-- Action Buttons -->
+      <div class="flex justify-center gap-4">
+        <button 
+          mat-raised-button 
+          color="primary" 
+          type="submit"
+          [disabled]="searchForm.invalid">
+          Buscar
+        </button>
+        
+        <button 
+          mat-stroked-button
+          type="button"
+          (click)="clearSearch()"
+          [disabled]="!queryControl?.value">
+          Limpar
+        </button>
+      </div>
     </div>
-
+    
   </form>
 </div>

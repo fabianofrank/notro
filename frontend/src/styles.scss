@@ -8,9 +8,77 @@
 /* Angular Material Theme */
 @import '@angular/material/prebuilt-themes/azure-blue.css';
 
+/* ---- START: Robust fix for Angular Material outline appearance with Tailwind CSS ---- */
+
+/* Fix for MDC-based form field outline issues with Tailwind's preflight */
+.mat-mdc-form-field.mat-mdc-form-field-appearance-outline {
+  .mdc-notched-outline__leading,
+  .mdc-notched-outline__notch,
+  .mdc-notched-outline__trailing {
+    border-width: 1px !important; /* Ensure a consistent border width */
+    border-style: solid !important; /* Explicitly set border style to solid */
+    border-color: rgba(0, 0, 0, 0.38) !important; /* Default inactive border color */
+    border-image-source: none !important; /* Crucial: Remove any potential border image causing artifacts */
+  }
+
+  /* Target and correct the notch border specifically to prevent the 'cross' */
+  .mdc-notched-outline__notch {
+    border-right-width: 0 !important; /* Prevent the vertical line in the notch area */
+  }
+
+  /* Style for focused state */
+  &.mat-focused {
+    .mdc-notched-outline__leading,
+    .mdc-notched-outline__notch,
+    .mdc-notched-outline__trailing {
+      border-color: var(--mdc-theme-primary, #6200EE) !important; /* Theme primary color for focused state */
+      border-width: 2px !important; /* Thicker border when focused */
+    }
+  }
+
+  /* When hovered, slightly darker border color */
+  &:not(.mat-focused):hover {
+    .mdc-notched-outline__leading,
+    .mdc-notched-outline__notch,
+    .mdc-notched-outline__trailing {
+      border-color: rgba(0, 0, 0, 0.6) !important; /* Darker grey on hover */
+    }
+  }
+}
+
+/* ---- END: Robust fix for Angular Material outline appearance with Tailwind CSS ---- */
+
+
 /* Global Styles */
 html, body { 
   height: 100%; 
   margin: 0; 
-  font-family: 'Roboto', sans-serif; 
+  font-family: 'Inter', 'Roboto', sans-serif; 
+}
+
+body {
+  background-color: #f8fafc;
+  color: #1e293b;
+}
+
+/* Custom Material overrides */
+.mat-mdc-form-field {
+  .mat-mdc-text-field-wrapper {
+    background-color: white;
+  }
+}
+
+.mat-toolbar.mat-primary {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+/* Animation classes */
+.fade-in {
+  animation: fadeIn 0.3s ease-in;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
 }

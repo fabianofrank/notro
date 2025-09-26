@@ -4,6 +4,13 @@
 **Progresso:** ~70% concluído  
 **Status:** Frontend criado, precisa integração final + testes
 
+## 📖 REFERÊNCIA ORIGINAL
+**Desafio completo:** `README.md` (arquivo original da Notro)
+- Contém requisitos técnicos detalhados
+- Stack obrigatória: Angular 18+ + Node.js + GraphQL
+- Funcionalidades: Busca repos GitHub + paginação + interface responsiva
+- Diferenciais: Testes + RxJS + Material + Docker + Deploy
+
 ---
 
 ## 📋 WORKFLOW MESTRE (Original)
@@ -22,6 +29,34 @@
 7. **Paginação completa** - Ajustar se houver bugs
 8. **Testes básicos** - Jest frontend + backend 
 9. **Deploy Vercel** - Frontend + Backend
+
+---
+
+## 📋 TODO LIST COMPLETA (Workflow Mestre)
+
+### ✅ **CONCLUÍDAS:**
+- [x] 1. Definir tecnologias e arquitetura geral do projeto
+- [x] 2. Setup inicial - Criar estrutura do projeto (package.json, folders)
+- [x] 3. Backend básico - Express + GraphQL setup
+- [x] 4. GitHub API integration - Backend funcionando 
+- [x] 5. Frontend setup - Angular 18 + Material + Tailwind + Apollo
+- [x] 6. Componentes básicos - Search + Repository List + Pagination
+
+### 🟡 **EM ANDAMENTO:**
+- [ ] 7. Integração front+back - RxJS + GraphQL funcionando end-to-end
+
+### ⏭️ **PENDENTES:**
+- [ ] 8. Implementar paginação completa 
+- [ ] 9. Interface básica e responsiva (ajustes)
+- [ ] 10. Testes básicos (unitários front/back)
+- [ ] 11. Deploy e documentação final
+
+### 🎯 **DIFERENCIAIS (opcionais):**
+- [ ] Docker para subir ambiente completo
+- [ ] Deploy em serviço (Heroku, Vercel, AWS)
+- [ ] Testes unitários e integrados  
+- [ ] RxJS avançado no Angular
+- [ ] Uso extensivo do Angular Material
 
 ---
 
@@ -163,3 +198,29 @@ npx ng serve       # Roda na porta 4200
 - 🟡 Deploy funcional
 
 **Continue de onde paramos:** Testar integração front+back! 🚀
+
+---
+
+## 🔄 PROCESSO DE WORK (para nova janela)
+
+### **COMO FUNCIONA:**
+1. **IA propõe** próximo passo da TODO list
+2. **User aprova** com "ok" ou "pode fazer"  
+3. **IA executa** o passo (código, arquivos, etc)
+4. **IA atualiza** TODO list automaticamente (marca ✅)
+5. **IA faz commit** do progresso
+6. **IA propõe** próximo passo → repete ciclo
+
+### **COMANDOS ÚTEIS:**
+- `todo_write` - IA usa para atualizar TODO list
+- **User só precisa:** dar "ok" em cada etapa
+- **IA gerencia:** progresso + commits + documentação
+
+### **PRÓXIMO PASSO ESPECÍFICO:**
+🎯 **Testar integração front+back end-to-end**
+- Rodar backend (4000) + frontend (4200)  
+- Buscar "react" → deve mostrar repositórios
+- Verificar paginação funcionando
+- Corrigir bugs se houver
+
+**Pedir aprovação → executar → marcar ✅ → commit → próximo!**

@@ -1,9 +1,11 @@
 import { Component, EventEmitter, Output } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
+import { MatTooltipModule } from '@angular/material/tooltip';
 import { SearchParams } from '../../models/repository.model';
 
 /* 
@@ -16,11 +18,13 @@ FLUXO: User digita → form válido → emit searchEvent → AppComponent recebe
   selector: 'app-search',
   standalone: true,
   imports: [
+    CommonModule,
     ReactiveFormsModule,
     MatInputModule,
     MatButtonModule, 
     MatFormFieldModule,
-    MatIconModule
+    MatIconModule,
+    MatTooltipModule
   ],
   templateUrl: './search.component.html',
   styleUrl: './search.component.scss'

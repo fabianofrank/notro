@@ -1,0 +1,24 @@
+<div class="pagination-container flex justify-center items-center gap-4 py-6" *ngIf="totalPages > 1">
+  
+  <!-- Previous button -->
+  <button mat-stroked-button 
+          [disabled]="!hasPreviousPage" 
+          (click)="previousPage()">
+    <mat-icon>chevron_left</mat-icon>
+    Anterior
+  </button>
+
+  <!-- Page info -->
+  <span class="page-info text-gray-600">
+    Página {{ currentPage }} de {{ totalPages }}
+  </span>
+
+  <!-- Next button -->
+  <button mat-stroked-button 
+          [disabled]="!hasNextPage" 
+          (click)="nextPage()">
+    Próximo
+    <mat-icon>chevron_right</mat-icon>
+  </button>
+
+</div>

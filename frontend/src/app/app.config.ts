@@ -19,10 +19,15 @@ export const appConfig: ApplicationConfig = {
     {
       provide: APOLLO_OPTIONS,
       useFactory: (httpLink: HttpLink) => {
+        const isProduction = window.location.hostname !== 'localhost';
+        const graphqlUri = isProduction 
+          ? `${window.location.origin}/graphql`
+          : 'http://localhost:4000/graphql';
+          
         return {
           cache: new InMemoryCache(),
           link: httpLink.create({
-            uri: 'http://localhost:4000/graphql',
+            uri: graphqlUri,
           }),
         };
       },

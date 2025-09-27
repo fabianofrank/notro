@@ -6,9 +6,7 @@
       "src": "frontend/package.json",
       "use": "@vercel/static-build",
       "config": {
-        "distDir": "dist",
-        "installCommand": "npm install --legacy-peer-deps",
-        "buildCommand": "npm run build"
+        "distDir": "dist/frontend"
       }
     },
     {
@@ -22,12 +20,13 @@
       "dest": "backend/src/server.js"
     },
     {
-      "src": "/health",
+      "src": "/health", 
       "dest": "backend/src/server.js"
     },
     {
       "src": "/(.*)",
-      "dest": "frontend/dist/index.html"
+      "dest": "frontend/dist/frontend/index.html"
     }
-  ]
+  ],
+  "installCommand": "cd frontend && npm install --legacy-peer-deps"
 }

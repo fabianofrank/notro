@@ -1,12 +1,11 @@
 {
   "version": 2,
-  "name": "notro",
   "builds": [
     {
       "src": "frontend/package.json",
       "use": "@vercel/static-build",
       "config": {
-        "distDir": "dist/frontend"
+        "distDir": "dist"
       }
     },
     {
@@ -16,17 +15,16 @@
   ],
   "routes": [
     {
-      "src": "/graphql",
+      "src": "/api/graphql",
       "dest": "backend/src/server.js"
     },
     {
-      "src": "/health", 
+      "src": "/api/health",
       "dest": "backend/src/server.js"
     },
     {
       "src": "/(.*)",
-      "dest": "frontend/dist/frontend/index.html"
+      "dest": "frontend/dist/index.html"
     }
-  ],
-  "installCommand": "cd frontend && npm install --legacy-peer-deps"
+  ]
 }

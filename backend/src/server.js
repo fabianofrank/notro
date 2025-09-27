@@ -12,18 +12,29 @@ app.use(cors()); // Permite Angular (origem diferente) fazer requisições
 app.use(express.json()); // Entende JSON no body das requisições
 
 app.use('/graphql', graphqlHTTP({
-  schema: schema, // Usa o schema que conecta com resolvers e service
-  graphiql: process.env.NODE_ENV === 'development', // Interface visual pra testar (http://localhost:4000/graphql)
+  schema: schema,
+  graphiql: process.env.NODE_ENV === 'development',
+}));
+
+app.use('/api/graphql', graphqlHTTP({
+  schema: schema,
+  graphiql: false,
 }));
 
 app.get('/health', (req, res) => {
   res.json({ status: 'OK', message: 'Backend rodando!' });
-});
+});
+
+app.get('/api/health', (req, res) => {
+  res.json({ status: 'OK', message: 'Backend rodando!', timestamp: new Date().toISOString() });
+});
+
 if (!process.env.VERCEL) {
   app.listen(PORT, () => {
     console.log(`🚀 Backend rodando na porta ${PORT}`);
     console.log(`📊 GraphQL playground: http://localhost:${PORT}/graphql`);
     console.log(`❤️ Health check: http://localhost:${PORT}/health`);
   });
-}
+}
+
 module.exports = app;

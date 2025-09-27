@@ -21,7 +21,7 @@ export const appConfig: ApplicationConfig = {
       useFactory: (httpLink: HttpLink) => {
         const isProduction = window.location.hostname !== 'localhost';
         const graphqlUri = isProduction 
-          ? `${window.location.origin}/graphql`
+          ? `${window.location.origin}/api/graphql`
           : 'http://localhost:4000/graphql';
           
         return {

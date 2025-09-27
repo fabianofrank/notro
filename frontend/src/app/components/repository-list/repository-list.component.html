@@ -1,40 +1,28 @@
-<!-- 
-📋 REPOSITORY LIST TEMPLATE - Lista de repositórios com cards Material
-FEATURES: Cards responsivos + informações principais + ações
--->
-
 <div class="repository-list">
 
-  <!-- Loading state -->
   <div *ngIf="loading" class="loading-container text-center py-8">
     <div class="animate-spin h-8 w-8 border-4 border-blue-500 border-t-transparent rounded-full mx-auto"></div>
     <p class="text-gray-600 mt-2">Buscando repositórios...</p>
   </div>
 
-  <!-- Results header -->
   <div *ngIf="!loading && repositories.length > 0" class="results-header mb-4">
     <p class="text-gray-600">
       <strong>{{ totalCount | number }}</strong> repositórios encontrados
     </p>
   </div>
-
-  <!-- Repository cards -->
   <div *ngIf="!loading && repositories.length > 0" class="grid gap-4 md:grid-cols-2 lg:grid-cols-3 auto-rows-fr">
 
     <mat-card *ngFor="let repo of repositories" class="repository-card flex flex-col h-full">
       <mat-card-header>
 
-        <!-- Owner avatar -->
         <div mat-card-avatar class="repository-avatar">
           <img [src]="repo.owner.avatarUrl" [alt]="repo.owner.login" class="rounded-full">
         </div>
 
-        <!-- Repository title -->
         <mat-card-title class="repository-title text-lg">
           {{ repo.name }}
         </mat-card-title>
 
-        <!-- Owner name -->
         <mat-card-subtitle class="repository-owner cursor-pointer hover:text-blue-600"
           (click)="openOwner(repo.owner.url)">
           {{ repo.owner.login }}
@@ -43,16 +31,14 @@ FEATURES: Cards responsivos + informações principais + ações
 
       <mat-card-content class="repository-content flex-1 flex flex-col">
 
-        <!-- Description -->
         <div class="repository-description-container relative h-20 mb-4 overflow-hidden">
           <p class="repository-description text-gray-700 leading-relaxed">
             {{ repo.description || 'Sem descrição disponível' }}
           </p>
-          <!-- Gradiente fade-out -->
+          
           <div class="absolute bottom-0 left-0 right-0 h-6 bg-gradient-to-t to-transparent repository-fade"></div>
         </div>
 
-        <!-- Language chip -->
         <div class="repository-language" *ngIf="repo.language">
           <mat-chip-set>
             <mat-chip>{{ repo.language }}</mat-chip>
@@ -62,7 +48,7 @@ FEATURES: Cards responsivos + informações principais + ações
       </mat-card-content>
 
       <div class="flex flex-col items-start block p-4 bg-gray-50 border-t">
-        <!-- Stats -->
+        
         <div class="repository-stats flex justify-between space-x-2 items-start text-xs text-gray-600 mb-3">
 
           <div class="stat-item flex items-center gap-1">
@@ -87,7 +73,6 @@ FEATURES: Cards responsivos + informações principais + ações
 
         </div>
 
-        <!-- Updated date + GitHub button -->
         <div class="flex flex-col justify-between items-center self-end">
           <button mat-stroked-button color="primary" (click)="openRepository(repo.url)" class="ml-auto">
             Ver no GitHub
@@ -98,7 +83,6 @@ FEATURES: Cards responsivos + informações principais + ações
     </mat-card>
   </div>
 
-  <!-- Empty state -->
   <div *ngIf="!loading && repositories.length === 0" class="empty-state text-center py-12">
     <mat-icon class="text-gray-400 text-6xl mb-4">search_off</mat-icon>
     <h3 class="text-xl text-gray-600 mb-2">Nenhum repositório encontrado</h3>

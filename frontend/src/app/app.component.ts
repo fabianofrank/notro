@@ -28,17 +28,13 @@ import { Repository, RepositoryConnection, SearchParams } from './models/reposit
 })
 export class AppComponent {
   title = 'GitHub Repository Search';
-  Math = Math; // Expor Math para o template
-  
-  // Estado da aplicação
+  Math = Math; // Expor Math para o template
   repositories: Repository[] = [];
   loading = false;
   searchParams: SearchParams | null = null;
   repositoryConnection: RepositoryConnection | null = null;
 
-  constructor(private repositoryService: RepositoryService) {}
-
-  // Executar busca quando componente de busca emitir evento
+  constructor(private repositoryService: RepositoryService) {}
   onSearch(searchParams: SearchParams): void {
     if (!searchParams.query.trim()) {
       this.clearResults();
@@ -47,9 +43,7 @@ export class AppComponent {
 
     this.searchParams = searchParams;
     this.executeSearch();
-  }
-
-  // Executar busca GraphQL
+  }
   private executeSearch(): void {
     if (!this.searchParams) return;
 
@@ -73,25 +67,18 @@ export class AppComponent {
     });
   }
 
-  /* 
-  📄 ON PAGE CHANGE - Executado quando user clica em paginação
-  FUNÇÃO: Fazer nova busca mantendo query mas mudando página
-  */
   onPageChange(newPage: number): void {
     console.log('🔄 Mudando para página:', newPage);
-    if (this.searchParams) {
-      // Manter query atual, apenas mudar página
+    if (this.searchParams) {
       const updatedParams: SearchParams = {
         ...this.searchParams,
         page: newPage
       };
-      
+
       console.log('📤 Parâmetros de busca:', updatedParams);
       this.onSearch(updatedParams);
     }
-  }
-
-  // Limpar resultados
+  }
   private clearResults(): void {
     this.repositories = [];
     this.repositoryConnection = null;

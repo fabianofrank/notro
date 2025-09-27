@@ -1,7 +1,5 @@
-<!-- Pagination Container -->
 <div class="pagination-container flex justify-center items-center gap-4 py-6 bg-white rounded-lg shadow-md">
-  
-  <!-- Previous button -->
+
   <button mat-stroked-button 
           [disabled]="!hasPreviousPage" 
           (click)="previousPage()"
@@ -9,12 +7,10 @@
     ← Anterior
   </button>
 
-  <!-- Page info -->
   <span class="page-info text-gray-700 font-medium px-4">
     Página {{ currentPage }}
   </span>
 
-  <!-- Next button -->
   <button mat-stroked-button 
           [disabled]="!hasNextPage" 
           (click)="nextPage()"

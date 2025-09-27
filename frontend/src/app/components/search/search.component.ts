@@ -8,12 +8,6 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { SearchParams } from '../../models/repository.model';
 
-/* 
-🔍 SEARCH COMPONENT - Barra de busca de repositórios
-RESPONSABILIDADE: Capturar termo de busca do usuário e emitir evento
-FLUXO: User digita → form válido → emit searchEvent → AppComponent recebe
-*/
-
 @Component({
   selector: 'app-search',
   standalone: true,
@@ -21,7 +15,7 @@ FLUXO: User digita → form válido → emit searchEvent → AppComponent recebe
     CommonModule,
     ReactiveFormsModule,
     MatInputModule,
-    MatButtonModule, 
+    MatButtonModule,
     MatFormFieldModule,
     MatIconModule,
     MatTooltipModule
@@ -29,53 +23,36 @@ FLUXO: User digita → form válido → emit searchEvent → AppComponent recebe
   templateUrl: './search.component.html',
   styleUrl: './search.component.scss'
 })
-export class SearchComponent {
-  
-  // Form reativo para busca
-  searchForm: FormGroup;
-  
-  // Event emitter para comunicar com componente pai (App)
+export class SearchComponent {
+  searchForm: FormGroup;
   @Output() searchEvent = new EventEmitter<SearchParams>();
-  
-  constructor(private fb: FormBuilder) {
-    // Criar form com validação
+
+  constructor(private fb: FormBuilder) {
     this.searchForm = this.fb.group({
       query: ['', [Validators.required, Validators.minLength(2)]]
     });
   }
 
-  /* 
-  📤 ON SEARCH - Executado quando user clica "Buscar" ou pressiona Enter
-  FUNÇÃO: Validar form → emitir evento com parâmetros de busca
-  RESULTADO: AppComponent recebe e faz query GraphQL
-  */
   onSearch(): void {
     if (this.searchForm.valid) {
       const query = this.searchForm.get('query')?.value?.trim();
-      
-      if (query) {
-        // Emitir evento com parâmetros de busca (sempre página 1 em nova busca)
+
+      if (query) {
         const searchParams: SearchParams = {
           query: query,
           page: 1,
           perPage: 10
         };
-        
+
         this.searchEvent.emit(searchParams);
       }
     }
   }
 
-  /* 
-  🔥 CLEAR SEARCH - Limpar busca
-  FUNÇÃO: Reset form + emit evento vazio para limpar resultados
-  */
   clearSearch(): void {
     this.searchForm.reset();
     this.searchEvent.emit({ query: '', page: 1, perPage: 10 });
-  }
-
-  // Getter para facilitar validação no template
+  }
   get queryControl() {
     return this.searchForm.get('query');
   }

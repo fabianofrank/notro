@@ -15,7 +15,7 @@ export class PaginationComponent {
   @Input() totalPages: number = 1;
   @Input() hasNextPage: boolean = false;
   @Input() hasPreviousPage: boolean = false;
-  
+
   @Output() pageChange = new EventEmitter<number>();
 
   goToPage(page: number): void {

@@ -1,12 +1,12 @@
 {
   "version": 2,
-  "name": "notro-challenge",
+  "name": "notro",
   "builds": [
     {
       "src": "frontend/package.json",
       "use": "@vercel/static-build",
       "config": {
-        "distDir": "frontend/dist"
+        "distDir": "dist"
       }
     },
     {
@@ -16,7 +16,11 @@
   ],
   "routes": [
     {
-      "src": "/api/(.*)",
+      "src": "/graphql",
+      "dest": "backend/src/server.js"
+    },
+    {
+      "src": "/health",
       "dest": "backend/src/server.js"
     },
     {

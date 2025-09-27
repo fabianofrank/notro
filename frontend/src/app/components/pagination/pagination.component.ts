@@ -19,18 +19,19 @@ export class PaginationComponent {
   @Output() pageChange = new EventEmitter<number>();
 
   goToPage(page: number): void {
-    if (page >= 1 && page <= this.totalPages) {
-      this.pageChange.emit(page);
-    }
+    console.log('🎯 goToPage chamado:', page);
+    this.pageChange.emit(page);
   }
 
   previousPage(): void {
+    console.log('⬅️ Anterior clicado');
     if (this.hasPreviousPage) {
       this.goToPage(this.currentPage - 1);
     }
   }
 
   nextPage(): void {
+    console.log('➡️ Próximo clicado');
     if (this.hasNextPage) {
       this.goToPage(this.currentPage + 1);
     }

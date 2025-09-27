@@ -49,14 +49,6 @@ export class AppComponent {
     this.executeSearch();
   }
 
-  // Navegar para página específica
-  onPageChange(page: number): void {
-    if (this.searchParams) {
-      this.searchParams.page = page;
-      this.executeSearch();
-    }
-  }
-
   // Executar busca GraphQL
   private executeSearch(): void {
     if (!this.searchParams) return;
@@ -79,6 +71,24 @@ export class AppComponent {
         this.clearResults();
       }
     });
+  }
+
+  /* 
+  📄 ON PAGE CHANGE - Executado quando user clica em paginação
+  FUNÇÃO: Fazer nova busca mantendo query mas mudando página
+  */
+  onPageChange(newPage: number): void {
+    console.log('🔄 Mudando para página:', newPage);
+    if (this.searchParams) {
+      // Manter query atual, apenas mudar página
+      const updatedParams: SearchParams = {
+        ...this.searchParams,
+        page: newPage
+      };
+      
+      console.log('📤 Parâmetros de busca:', updatedParams);
+      this.onSearch(updatedParams);
+    }
   }
 
   // Limpar resultados

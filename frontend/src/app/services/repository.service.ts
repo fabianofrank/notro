@@ -60,7 +60,7 @@ export class RepositoryService {
     return this.apollo.query<{ searchRepositories: RepositoryConnection }>({
       query: SEARCH_REPOSITORIES,
       variables: { query, page, perPage },
-      fetchPolicy: 'cache-first', // Cache para performance
+      fetchPolicy: 'network-only', // Sempre buscar dados frescos
       errorPolicy: 'all' // Mostra erros + dados parciais
     }).pipe(
       map(result => result.data.searchRepositories)

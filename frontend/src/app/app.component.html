@@ -36,10 +36,10 @@
     </app-repository-list>
 
     <!-- Pagination -->
-    <div class="flex justify-center pt-6">
+    <div *ngIf="repositories.length > 0" class="pt-6">
       <app-pagination
         [currentPage]="searchParams?.page || 1"
-        [hasNextPage]="repositories.length === (searchParams?.perPage || 10)"
+        [hasNextPage]="true"
         [hasPreviousPage]="(searchParams?.page || 1) > 1"
         (pageChange)="onPageChange($event)">
       </app-pagination>

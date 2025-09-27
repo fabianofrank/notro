@@ -1,0 +1,7 @@
+.repository-fade {
+    background-image: linear-gradient(to top, var(--mat-card-container-color), transparent);
+}
+
+.repository-owner:hover {
+    color: var(--mat-primary-text-color, #3b82f6); /* Exemplo: uma cor azul */
+}
